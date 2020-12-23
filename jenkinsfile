@@ -35,7 +35,7 @@ echo "Deploying the Project.........."
 */
 node {
 	stage('Checkout code') {
-         git url: 'https://github.com/jilu407/jenkins-script-pipeline.git'
+         git url: ' https://github.com/RamanaiduNaripeddi/jenkins-script-pipeline.git'
            
     }
 	stage('Build'){
@@ -51,7 +51,13 @@ node {
 		echo 'Compile pass'
 		sh "mvn compile"
 	}
-	stage('Deploy'){
+	stage('package'){
+		echo 'Compile pass'
+		sh "mvn package"
+	}
+	stage('Ansible Deploy'){
 		echo "Deploying the Project.........."
+		ansiblePlaybook credentialsId: 'deploy', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'play.yml', sudoUser: null
+		
 	}
 }
