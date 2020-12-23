@@ -57,7 +57,7 @@ node {
 	}
 	stage('Ansible Deploy'){
 		echo "Deploying the Project.........."
-		ansiblePlaybook credentialsId: 'deploy', disableHostKeyChecking: true, installation: 'ubuntu', inventory: 'dev.inv', playbook: 'play.yml', sudoUser: null
+		ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'dev.inv', playbook: 'play.yml'
 		
 	}
 }
